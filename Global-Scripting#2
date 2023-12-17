@@ -1,0 +1,71 @@
+//Function that matches the ,issing base pairs to the provided DNA and returns a 2d array
+ function pairElement(str) {
+  //Define the base pairs
+  const basePairs = { 'A': 'T', 'T': 'A','C': 'G','G':'C'};
+
+  //Convert the string into an array of characters and map their base pairs
+  const result = str.split('').map(char => [char, basePairs[char]]);
+  return result;
+}
+
+const res = pairElement("GCG");
+console.log(res);
+
+//[ [ 'G', 'C' ], [ 'C', 'G' ], [ 'G', 'C' ] ]
+
+
+
+//Find the missing letter in a sentence and replace it
+function fearNotLetter(str) {
+  for(let i = 0; i < str.length; i++){
+    /* code of current character */
+    const charCode = str.charCodeAt(i);
+
+    /* if code of current character is not equal to first character + no of iteration then a letter was skipped */
+    if (charCode !== str.charCodeAt(0) + i) {
+      /* if current character skipped past a character find previous character and return */
+      return String.fromCharCode(charCode - 1);
+    }
+  }
+  return undefined;
+}
+
+fearNotLetter("abce");
+
+//Combining the arrays without replacing the order
+function uniteUnique(...arr) {
+  //Concantenate the arrays
+  const combinedArray = [].concat(...arr);
+
+ //Use Set to store unique values while preserving order
+ const uniqueArray = [...new Set(combinedArray)];
+
+  return uniqueArray;
+}
+
+const result = uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+
+console.log(result);
+
+//[ 1, 3, 2, 5, 4 ]
+
+
+//Converting special characters to their HTML entities
+function convertHTML(str) {
+  //Define a mapping of their special characters to their html entities
+  const htmlEntities = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&apos;'
+  };
+//Using the regular expression to replace special Characters
+  const result = str.replace(/[&<>"']/g, char => htmlEntities[char]);
+
+  return result;
+}
+
+ const result = convertHTML("Dolce & Gabbana");
+ console.log(result);
+ //Dolce &amp; Gabbana
