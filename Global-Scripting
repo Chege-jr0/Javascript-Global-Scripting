@@ -1,0 +1,80 @@
+//The function to convert a sentence to lowercase using regular expressions
+function spinalCase(str) {
+  
+  //We first replace the spaces and underscores with dashes
+  str = str.replace(/[\s_]/g,"-");
+
+  //Use the regular expression to insert dashes between camelCase words
+  str = str.replace(/([a-z])([A-Z])/g, "$1-$2");
+
+  //Convert to LowerCase
+  str = str.toLowerCase();
+
+  return str;
+}
+
+const result=spinalCase('This Is Spinal Tap');
+console.log(result);
+
+
+
+//Pig latin apparently its a game
+function translatePigLatin(str) {
+  //Check if the first letter is a Vowel
+  const isVowel = char => ['a','e','i','o','u'].includes(char.toLowerCase());
+
+  //Convert words to pigLatin
+   const convertWord = word => {
+     const firstLetter = word[0];
+
+   if(isVowel(firstLetter)){
+     return word + 'way';
+   }else {
+     const consonantCluster = [];
+     let index = 0;
+
+     while (index < word.length && !isVowel(word[index])){
+        consonantCluster.push(word[index]);
+                index++;
+     }
+     return word.slice(index) + consonantCluster.join('') + 'ay';
+   }
+   };
+
+   //Split the input string into words and apply Pig latin conversion
+   const result = str.split(' ').map(convertWord).join(' ');
+
+   return result;
+}
+
+const result = translatePigLatin("consonant");
+
+console.log(result);
+
+//Search-and-Replace function
+function myReplace(str, before, after) {
+
+  // Find index where before is on string
+  var index = str.indexOf(before);
+
+  // Check to see if the first letter is uppercase or not
+  if (str[index] === str[index].toUpperCase()) {
+    // Change the after word to be capitalized before we use it.
+    after = after.charAt(0).toUpperCase() + after.slice(1);
+  } else {
+    // Change the after word to be uncapitalized before we use it.
+    after = after.charAt(0).toLowerCase() + after.slice(1);
+  }
+
+  // Now replace the original str with the edited one.
+  str = str.replace(before, after);
+
+  return str;
+}
+
+// test here
+const result = myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
+
+console.log(result);
+
+//A quick brown fox leaped over the lazy dog
