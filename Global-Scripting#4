@@ -1,0 +1,80 @@
+//Changing from Binary numbers to ASCII characters and joining them
+function binaryAgent(str) {
+  //Split the binary value into an array of binary values
+  let binaryArray = str.split(" ");
+
+  //Convert the binary values to decimal and the to ASCII characters
+  let asciiArray = binaryArray.map(binary => String.fromCharCode(parseInt(binary, 2)));
+
+  //Join the ASCII characters to form the final translated sentence
+  let translatedSentence = asciiArray.join("");
+
+  return translatedSentence;
+}
+
+let results = binaryAgent("01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000110 01110010 01100101 01100101 01000011 01101111 01100100 01100101 01000011 01100001 01101101 01110000 00100001");
+
+console.log(results)
+//Result was I love freecodecamp
+
+
+
+//Checking if the Second Argument on the condition is satisfied given its a boolean using the hasOwnProperty
+
+function truthCheck(collection, pre) {
+  
+  //Check if the specified property is truthy for all objects in the collection
+  return collection.every(obj => obj.hasOwnProperty(pre) && Boolean(obj[pre]));
+}
+
+truthCheck([{name: "Quincy", role: "Founder", isBot: false}, {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "isBot");
+
+
+//Summing up the of number Arguments
+function addTogether() {
+  const [first, second] = arguments;
+
+  if(typeof (first) === "number"){
+    if(typeof (second) === "number") return first + second;
+    if(arguments.length === 1) return (second) =>  addTogether(first, second);``
+  }
+}
+
+let result = addTogether(5,7);
+console.log(result);
+//12
+
+
+
+
+//According to Kepplers Law 
+//Calculating the orbital period in seconds given the formula below
+T=2πa3μ−−−√
+
+function orbitalPeriod(arr) {
+  const GM = 398600.4418;
+  const earthRadius = 6367.4447;
+  const a = 2 * Math.PI;
+  const newArr= [];
+
+  const getOrbPeriod = function(obj) {
+    const c = Math.pow(earthRadius + obj.avgAlt, 3);
+    const b = Math.sqrt(c / GM);
+    const orbPeriod = Math.round(a * b);
+    // create new object
+    return {name: obj.name, orbitalPeriod: orbPeriod};
+  };
+
+  for (let elem in arr) {
+    newArr.push(getOrbPeriod(arr[elem]));
+  }
+
+  return newArr;
+}
+
+
+
+
+let result = orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
+
+console.log(result);
