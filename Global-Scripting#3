@@ -1,0 +1,116 @@
+//Fibonacci Sequnece 
+function sumFibs(num) {
+  //Creating variables to keep record of the prevoius and current number along   with the result
+let prevNumber = 0;
+let currNumber = 1;
+
+let result = 0;
+
+//Use a while loop to make sure we do not go over the given parameter
+//We use a modulo to check if the number is odd or even if it is odd then add it to the result
+while (currNumber <= num){
+  if(currNumber % 2 !==0) {
+   result += currNumber;
+     }
+      //Complete the fibonacci by rotating getting the next number and getting values after that
+      currNumber += prevNumber;
+      prevNumber = currNumber - prevNumber;
+  }
+  return result;
+}
+
+let result = sumFibs(10);
+
+console.log(result)
+
+
+
+
+//Returns the sum of all prime numbers = to the number given
+function sumPrimes(num) {
+  //Function to check if the number is prime
+  function isPrime(number){
+    if(number < 2){
+      return false;
+    }
+    for(let i =2; i<= Math.sqrt(number); i++){
+      if(number % i==0){
+        return false;
+      }
+    }
+    return true;
+  }
+  //Sum of prime numbers less than or equal to num
+  let sum = 0;
+  for(let i = 2; i <= num; i++){
+    if (isPrime(i)){
+      sum += i;
+    }
+  }
+  return sum;
+}
+
+let result = sumPrimes(977);
+console.log(result)
+
+
+
+//Calculating the LCM of two numbers guven the RANGE
+function smallestCommons(arr) {
+ //Function to find the GCD
+ function gcd(a,b){
+    return b === 0 ? a : gcd(b,a % b);
+ }
+ //Function to find the LCM
+ function lcm(a,b) {
+   return (a*b) / gcd(a,b);
+ }
+
+ //Sort the array in ascending order
+ arr.sort((a,b) => a-b);
+
+ //Create an array of all the numbers in the range
+ let numbers = [];
+ for (let i=arr[0]; i <=arr[1]; i++){
+  numbers.push(i);
+ }
+ //Calculate the LCM of all the numbers in the range
+ let mutiple = numbers[0];
+ for(let i =1; i< numbers.length; i++){
+   mutiple = lcm(mutiple, numbers[i]);
+
+ }
+ return mutiple;
+}
+
+let result = smallestCommons([23,18]);
+console.log(result)
+
+
+
+//Check the paramters of the function given and go through the array
+function dropElements(arr, func) {
+  /*Use a while loop to check with Array.prototype.shift() to check if the first element of the rarry returns true.It also checks to see if the array is not empty to avoid infinite loops*/
+ while (arr.length > 0 && !func(arr[0])) {
+    arr.shift();
+  }
+  return arr;
+
+}
+
+ let result = dropElements([1, 2, 3], function(n) {return n < 3; });
+ console.log(result)
+
+
+//Flattening a nested  Array no matter how nested
+function dropElements(arr, func) {
+  /*Use a while loop to check with Array.prototype.shift() to check if the first element of the rarry returns true.It also checks to see if the array is not empty to avoid infinite loops*/
+ while (arr.length > 0 && !func(arr[0])) {
+    arr.shift();
+  }
+  return arr;
+
+}
+
+ let result = dropElements([1, 2, 3], function(n) {return n < 3; });
+ console.log(result)
